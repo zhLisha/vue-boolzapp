@@ -85,12 +85,13 @@
                                             <div class="contact-name">
                                                 <span> {{ element.name }} </span>
                                             </div>
-                                            <div class="last-message">
+                                            <div v-if="element.messages.length > 0" class="last-message">
                                                 {{ element.messages[element.messages.length - 1].text }}
                                             </div>
+                                            <span v-else class="last-message"> Inizia una nuova chat </span>
                                         </div>
                                     </div>
-                                    <div class="last-access">
+                                    <div v-if="element.messages.length > 0" class="last-access">
                                         {{element.messages[element.messages.length - 1].date}}
                                     </div>
                                 </li>
@@ -111,7 +112,7 @@
                                 <div class="contact-name">
                                     <span> {{ contacts[currentContact].name }} </span>
                                     <br>
-                                    <span class="last-access">Ultimo accesso alle {{contacts[currentContact].messages[contacts[currentContact].messages.length - 1].date}}</span>
+                                    <span v-if="contacts[currentContact].messages.length > 0" class="last-access"> Ultimo accesso alle {{contacts[currentContact].messages[contacts[currentContact].messages.length - 1].date}}</span>
                                 </div>
                             </div>
 
@@ -142,7 +143,7 @@
                                         {{message.text}}
 
                                         <!-- Chevron to click for options -->
-                                        <div @click="showOptionWindow(message), indexMessage(index)" class="chevron">
+                                        <div @click="indexMessage(index), showOptionWindow(message)" class="chevron">
                                             <i class="fa-solid fa-angle-down"></i> 
                                         </div>
                                     </div>
@@ -153,7 +154,7 @@
                                     </div>
 
                                     <!-- Options WIndow -->
-                                    <ul v-if="activeMessage === index" class="menu-window">
+                                    <ul v-if="index === activeMessage" class="menu-window">
                                         <li class="info-message">
                                             <span>Info Messaggio</span>
                                         </li>

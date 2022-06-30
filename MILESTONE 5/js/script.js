@@ -286,9 +286,10 @@ var app = new Vue(
 			},
 
 			// Eliminazione del messaggio corrente
-			deleteCurrentMessage(index) {
+			deleteCurrentMessage(message, index) {
 				this.contacts[this.currentContact].messages.splice(index, 1);
 				message.active = false;
+				this.activeMessage = null;
 			}
 		}
 	}
