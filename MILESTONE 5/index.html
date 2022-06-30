@@ -75,14 +75,23 @@
                         <div class="contacts">
                             <ul class="contact-list">
                                 <li v-if="element.visible" @click="selectCurrentContact(index)" v-for="(element, index) in contacts" class="contact-profile">
-                                    <div class="contact-photo">
-                                        <img :src="'img/avatar' + element.avatar + '.jpg'" alt="">
+                                    <div class="info-contact-wrapper">
+                                        <div class="contact-photo">
+                                            <img :src="'img/avatar' + element.avatar + '.jpg'" alt="">
+                                        </div>
+                                        <div class="contact-info">
+                                            <div class="contact-name">
+                                                <span> {{ element.name }} </span>
+                                            </div>
+                                            <div class="last-message">
+                                                {{ element.messages[element.messages.length - 1].text }}
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="contact-name">
-                                        <span> {{ element.name }} </span>
+                                    <div class="last-access">
+                                        {{ element.messages[element.messages.length - 1].date }}
                                     </div>
                                 </li>
-                                
                             </ul>
                         </div>
                     </div>
@@ -100,7 +109,7 @@
                                 <div class="contact-name">
                                     <span> {{ contacts[currentContact].name }} </span>
                                     <br>
-                                    <span class="last-access">Ultimo accesso alle </span>
+                                    <span class="last-access">Ultimo accesso alle {{contacts[currentContact].messages[contacts[currentContact].messages.length - 1].date}}</span>
                                 </div>
                             </div>
 
@@ -126,8 +135,22 @@
                             <!-- Sended -->
                             <li v-for="(message, index) in contacts[currentContact].messages" :class="{'sended-message': message.status === 'sent', 'received-message': message.status === 'received'}">
                                 <div class="max-length-message" :class="{'green': message.status === 'sent', 'white': message.status === 'received'}">
-                                    {{message.text}}
+                                    <div class="message-text">
+                                        {{message.text}}
+
+                                        <!-- Chevron to click for options -->
+                                        <div class="chevron">
+                                            <i class="fa-solid fa-angle-down"></i>
+                                        </div>
+                                    </div>
+
+                                    <!-- Sended Messsage's time --> 
+                                    <div class="sent-message-time">
+                                        {{message.date}}
+                                    </div>
                                 </div>
+
+                                
                             </li>
                         </ul>
                     </div>

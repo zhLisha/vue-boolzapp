@@ -167,7 +167,11 @@ input {
 .contact-profile {
     padding: 15px;
     display: flex;
-    align-items: center;
+    justify-content: space-between;
+}
+
+.info-contact-wrapper {
+    display: flex;
 }
 
 .contacts{
@@ -189,11 +193,27 @@ input {
     cursor: pointer;
 }
 
-.contact-name {
-    padding-left: 10px;
+.contact-name span:first-child{
+    font-size: 14px;
     font-weight: 600;
 }
 
+.contact-info {
+    padding-left: 15px;
+}
+
+.last-message {
+    color: rgb(175, 174, 174);
+    padding-top: 5px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width:120px; 
+}
+
+.contact-profile .last-access {
+    justify-self: flex-end;
+}
 /* Right Side ****************************/
 
 .right-side {
@@ -237,10 +257,11 @@ input {
 
 /* All Messages */
 .chat-content {
-    font-size: 11px;
+    font-size: 13px;
     margin: 0 auto;
     padding: 25px 40px;
 }
+
 
 .sended-message {
     display: flex;
@@ -249,9 +270,32 @@ input {
 
 .max-length-message {
     margin: 10px 0;
-    padding: 13px;
+    padding: 13px 13px 23px 13px;
     max-width: 70%;
     border-radius: 7px;
+    position: relative;
+}
+
+.message-text {
+    display: flex;
+}
+
+.sent-message-time {
+    font-size: 11px;
+    color: rgb(175, 174, 174);
+    position: absolute;
+    padding-top: 5px;
+    right: 5px;
+}
+
+.chevron {
+    padding-left: 20px;
+    cursor: pointer;
+    color: transparent;
+}
+
+.chevron:hover {
+    color: rgb(175, 174, 174);
 }
 
 .green {
