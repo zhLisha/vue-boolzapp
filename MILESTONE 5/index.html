@@ -67,6 +67,7 @@
                         <!-- Search Area --> 
                         <div class="search">
                             <div class="input-search">
+                                
                                 <label for="search"><i class="fa-solid fa-magnifying-glass icon"></i></label>
                                 <input @keyup="inputFilterContact()" v-model="filterContacts" type="text" id="search" placeholder="Cerca o inizia una nuova chat">
                             </div>
@@ -141,7 +142,7 @@
                                         {{message.text}}
 
                                         <!-- Chevron to click for options -->
-                                        <div @click="message.active = !message.active" class="chevron">
+                                        <div @click="showOptionWindow(message), indexMessage(index)" class="chevron">
                                             <i class="fa-solid fa-angle-down"></i> 
                                         </div>
                                     </div>
@@ -152,11 +153,11 @@
                                     </div>
 
                                     <!-- Options WIndow -->
-                                    <ul v-if="!message.active" class="menu-window">
+                                    <ul v-if="activeMessage === index" class="menu-window">
                                         <li class="info-message">
                                             <span>Info Messaggio</span>
                                         </li>
-                                        <li @click="deleteCurrentMessage(index)" class="delete-message">
+                                        <li @click="deleteCurrentMessage(message, index)" class="delete-message">
                                             <span>Cancella Messaggio</span>
                                         </li>
                                     </ul>

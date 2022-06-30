@@ -10,6 +10,9 @@ var app = new Vue(
 			// Input filtro per ricercare contatto
 			filterContacts:'',
 
+			// Index per ogni singolo messaggio
+			activeMessage: null,
+
 			contacts: [
 				{
 					name: 'Michele',
@@ -217,6 +220,7 @@ var app = new Vue(
 			// Trasformazione di currentContact nell'elemento corrente selezionato
 			selectCurrentContact(index) {
 				this.currentContact = index;
+				this.activeMessage = null;
 			},
 
 			// Invio di un nuovo messaggio da parte dell'utente a cui dopo 1sec. si attivera' la risposta automatica 'OK'
@@ -271,9 +275,20 @@ var app = new Vue(
 				});
 			},
 
+			// Passo l'index dei messaggi ad ogni messaggio che selezionero'
+			indexMessage(index) {
+				this.activeMessage = index;
+			},
+
+			// Rendo visibile con un toggle la tendina per le opzioni cancella o info
+			showOptionWindow(message) {
+				message.active = !message.active;
+			},
+
 			// Eliminazione del messaggio corrente
 			deleteCurrentMessage(index) {
 				this.contacts[this.currentContact].messages.splice(index, 1);
+				message.active = false;
 			}
 		}
 	}
