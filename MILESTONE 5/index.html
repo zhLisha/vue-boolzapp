@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <link rel="stylesheet" href="css/style.css">
     <title>Boolzapp</title>
@@ -84,12 +85,12 @@
                                                 <span> {{ element.name }} </span>
                                             </div>
                                             <div class="last-message">
-                                                {{ element.messages[element.messages.length - 1].text }}
+                                                {{element.messages[element.messages.length-1].text}}
                                             </div>
                                         </div>
                                     </div>
                                     <div class="last-access">
-                                        {{ element.messages[element.messages.length - 1].date }}
+                                        {{element.messages[element.messages.length-1].date}}
                                     </div>
                                 </li>
                             </ul>
@@ -133,7 +134,7 @@
                     <div class="content chat-content">
                         <ul>
                             <!-- Sended -->
-                            <li v-for="(message, index) in contacts[currentContact].messages" :class="{'sended-message': message.status === 'sent', 'received-message': message.status === 'received'}">
+                            <li class="message-wrapper" v-for="(message, index) in contacts[currentContact].messages" :class="{'sended-message': message.status === 'sent', 'received-message': message.status === 'received'}">
                                 <div class="max-length-message" :class="{'green': message.status === 'sent', 'white': message.status === 'received'}">
                                     <div class="message-text">
                                         {{message.text}}
@@ -148,9 +149,17 @@
                                     <div class="sent-message-time">
                                         {{message.date}}
                                     </div>
-                                </div>
 
-                                
+                                    <!-- Options WIndow -->
+                                    <ul class="menu-window">
+                                        <li class="info-message">
+                                            <span>Info Messaggio</span>
+                                        </li>
+                                        <li @click="deleteCurrentMessage(index)" class="delete-message">
+                                            <span>Cancella Messaggio</span>
+                                        </li>
+                                    </ul>
+                                </div>
                             </li>
                         </ul>
                     </div>

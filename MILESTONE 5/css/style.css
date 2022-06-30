@@ -226,7 +226,6 @@ input {
     overflow: auto;
 }
 
-
 /* Header */
 .active-contact {
     width: 100%;
@@ -271,13 +270,15 @@ input {
 .max-length-message {
     margin: 10px 0;
     padding: 13px 13px 23px 13px;
-    max-width: 70%;
+    max-width: 200px;
+    min-width: 140px;
     border-radius: 7px;
     position: relative;
 }
 
 .message-text {
     display: flex;
+    justify-content: space-between;
 }
 
 .sent-message-time {
@@ -294,7 +295,7 @@ input {
     color: transparent;
 }
 
-.chevron:hover {
+.max-length-message:hover .chevron{
     color: rgb(175, 174, 174);
 }
 
@@ -309,6 +310,31 @@ input {
 
 .white {
     background-color: #fff;
+}
+
+/* Menu Window */
+.menu-window {
+    background-color: white;
+    border-radius: 7px;
+    box-shadow: 5px 5px 10px lightgray;
+    position: absolute;
+    z-index: 1000;
+    line-height: 30px;
+    right: 10px;
+    width: 160px;
+}
+
+.menu-window .info-message {
+    border-bottom: 2px solid #ece9e9;
+}
+
+.menu-window li {
+    padding: 5px 20px 5px 20px;
+    cursor: pointer;
+}
+
+.menu-window li:hover {
+    background-color: #ece9e9;
 }
 
 

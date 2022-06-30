@@ -228,7 +228,7 @@ var app = new Vue(
 				if(trimmedUserMessage.length > 0) {
 					// Creo un nuovo oggetto da aggiungere all'array di oggetti come nuovo input dell'utente
 					const newMessage = {
-						date: '',
+						date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
 						text: trimmedUserMessage,
 						status: 'sent',
 						active: true
@@ -242,7 +242,7 @@ var app = new Vue(
 				// Setto il timer per la risposta automatica a 1sec. dall'invio del messaggio dell'utente
 				setTimeout(() => {
 					const automaticMessage = {
-						date: '',
+						date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
 						text: 'Ok',
 						status: 'received',
 						active: true
@@ -269,8 +269,12 @@ var app = new Vue(
 						element.visible = false;
 					};
 				});
+			},
+
+			// Eliminazione del messaggio corrente
+			deleteCurrentMessage(index) {
+				this.contacts[this.currentContact].messages.splice(index, 1);
 			}
-			
 		}
 	}
 )
