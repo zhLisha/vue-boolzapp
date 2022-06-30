@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Boolzapp</title>
+</head>
+<body>
+    
+    
+    <div id="root">
+        <!-- Chat View -->
+        <main>
+            <div class="container">
+                <!-- Left Side -->
+                <div class="left-side">
+                    <!-- Left Side Header -->
+                    <div class="header">
+                        <div class="user-profile">
+                            <div class="user-photo">
+                                <img src="img/avatar_io.jpg" alt="">
+                            </div>
+                            <div class="user-name">
+                                <span>Nome Utente</span>
+                            </div>
+                        </div>
+
+                        <!-- Actions -->
+                        <div>
+                            <ul class="actions">
+                                <li class="loading icon">
+                                    <i class="fa-solid fa-spinner"></i>
+                                </li>
+                                <li class="message icon">
+                                    <i class="fa-solid fa-message"></i>
+                                </li>
+                                <li class="options icon">
+                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Left Side Content -->
+                    <div class="content left">
+
+                        <!-- Notifications -->
+                        <div class="notifications">
+                            <div class="notification icon">
+                                <i class="fa-solid fa-bell-slash"></i>
+                            </div>
+                            <div class="notification-text">
+                                <div class="text">
+                                    <span>Ricevi notifiche di nuovi messaggi</span>
+                                </div>
+                                <div class="activation">
+                                    <span>Attiva notifiche desktop</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Search Area --> 
+                        <div class="search">
+                            <div class="input-search">
+                                <label for="search"><i class="fa-solid fa-magnifying-glass icon"></i></label>
+                                <input type="text" id="search" placeholder="Cerca o inizia una nuova chat">
+                            </div>
+                        </div>
+
+                        <!-- Contact Area -->
+                        <div class="contacts">
+                            <ul class="contact-list">
+                                <li @click="selectCurrentContact(index)" 
+                                v-for="(element, index) in contacts" 
+                                class="contact-profile">
+                                    <div class="contact-photo">
+                                        <img :src="'img/avatar' + contacts[index].avatar + '.jpg'" alt="">
+                                    </div>
+                                    <div class="contact-name">
+                                        <span> {{ contacts[index].name }} </span>
+                                    </div>
+                                </li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- Right Side -->
+                <div class="right-side">
+                    <!-- Right Side Header -->
+                    <div class="header">
+                        <div class="active-contact">
+                            <div class="active-contact-info">
+                                <div class="contact-photo">
+                                    <img :src="'img/avatar' + contacts[currentContact].avatar + '.jpg'" alt="">
+                                </div>
+                                <div class="contact-name">
+                                    <span> {{ contacts[currentContact].name }} </span>
+                                    <br>
+                                    <span class="last-access">Ultimo accesso alle </span>
+                                </div>
+                            </div>
+
+                            <ul class="right-icons">
+                                <li class="search-right icon">
+                                    <i class="fa-solid fa-magnifying-glass icon"></i>
+                                </li>
+
+                                <li class="attach icon">
+                                    <i class="fa-solid fa-paperclip"></i>
+                                </li>
+
+                                <li class="option icon">
+                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- All Messages -->
+                    <div class="content chat-content">
+                        <ul>
+                            <li v-for="(element, index) in contacts[currentContact].messages" 
+                            :class="{'sended-message': element.status === 'sent', 
+                            'received-message': element.status === 'received'}">
+                                <div class="max-length-message" 
+                                :class="{'message-green': element.status === 'sent', 
+                                'message-white': element.status === 'received'}">
+                                    {{element.text}}
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Footer Input message user -->
+                    <div class="inner-footer">
+                        <div class="smile icon">
+                            <i class="fa-regular fa-face-smile"></i>
+                        </div>
+
+                        <div class="input-message">
+                            <label for="user-message"></label>
+                            <input type="text" id="user-message" placeholder="Scrivi un messaggio">
+                        </div>
+
+                        <div class="voice-message icon">
+                            <i class="fa-solid fa-microphone"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
