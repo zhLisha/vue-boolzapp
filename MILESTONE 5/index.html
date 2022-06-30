@@ -85,12 +85,12 @@
                                                 <span> {{ element.name }} </span>
                                             </div>
                                             <div class="last-message">
-                                                {{element.messages[element.messages.length-1].text}}
+                                                {{ element.messages[element.messages.length - 1].text }}
                                             </div>
                                         </div>
                                     </div>
                                     <div class="last-access">
-                                        {{element.messages[element.messages.length-1].date}}
+                                        {{element.messages[element.messages.length - 1].date}}
                                     </div>
                                 </li>
                             </ul>
@@ -136,12 +136,13 @@
                             <!-- Sended -->
                             <li class="message-wrapper" v-for="(message, index) in contacts[currentContact].messages" :class="{'sended-message': message.status === 'sent', 'received-message': message.status === 'received'}">
                                 <div class="max-length-message" :class="{'green': message.status === 'sent', 'white': message.status === 'received'}">
+
                                     <div class="message-text">
                                         {{message.text}}
 
                                         <!-- Chevron to click for options -->
-                                        <div class="chevron">
-                                            <i class="fa-solid fa-angle-down"></i>
+                                        <div @click="message.active = !message.active" class="chevron">
+                                            <i class="fa-solid fa-angle-down"></i> 
                                         </div>
                                     </div>
 
@@ -151,7 +152,7 @@
                                     </div>
 
                                     <!-- Options WIndow -->
-                                    <ul class="menu-window">
+                                    <ul v-if="!message.active" class="menu-window">
                                         <li class="info-message">
                                             <span>Info Messaggio</span>
                                         </li>
@@ -159,6 +160,7 @@
                                             <span>Cancella Messaggio</span>
                                         </li>
                                     </ul>
+
                                 </div>
                             </li>
                         </ul>

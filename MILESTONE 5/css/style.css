@@ -270,7 +270,7 @@ input {
 .max-length-message {
     margin: 10px 0;
     padding: 13px 13px 23px 13px;
-    max-width: 200px;
+    max-width: 500px;
     min-width: 140px;
     border-radius: 7px;
     position: relative;
@@ -320,6 +320,7 @@ input {
     position: absolute;
     z-index: 1000;
     line-height: 30px;
+    top: 30px;
     right: 10px;
     width: 160px;
 }
